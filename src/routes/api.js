@@ -40,9 +40,10 @@ const getBooksFromGoogle = async (req, res) => {
 
 const saveBookInDb = async (req, res) => {
   try {
+    const { id: userId } = req.user;
     const payload = req.body;
 
-    await db.Book.create(payload);
+    await db.Book.create({ ...payload, userId });
 
     res.json({
       success: true,
@@ -56,10 +57,11 @@ const saveBookInDb = async (req, res) => {
 
 const removeBookInDb = async (req, res) => {
   try {
+    const { id: userId } = req.user;
     const { id } = req.params;
 
-    await db.Book.findByIdAndDelete(id);
-    const results = await db.Book.find({});
+    await db.Book.findOneAndDelete({ _id: id, userId });
+    const results = await db.Book.find({ userId });
 
     res.json({
       success: true,
@@ -72,9 +74,10 @@ const removeBookInDb = async (req, res) => {
   }
 };
 
-const getAllSavedBooks = async (_, res) => {
+const getAllSavedBooks = async (req, res) => {
   try {
-    const books = await db.Book.find({});
+    const { id: userId } = req.user;
+    const books = await db.Book.find({ userId });
 
     res.json({
       results: books,
