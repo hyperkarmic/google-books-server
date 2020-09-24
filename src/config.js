@@ -8,8 +8,11 @@ const MONGOOSE_OPTIONS = {
   useNewUrlParser: true,
 };
 
+const AUTH_SECRET = process.env.AUTH_SECRET || "test-secret";
+
 module.exports = {
   PORT,
   DB_URI,
   MONGOOSE_OPTIONS,
+  AUTH_SECRET,
 };
