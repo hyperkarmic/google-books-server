@@ -9,13 +9,16 @@ const apiRouter = express.Router();
 
 const transformGoogleBooks = (googleBooks = []) => {
   return googleBooks.map((googleBook) => {
+    const { volumeInfo } = googleBook;
     return {
-      title: googleBook.volumeInfo.title,
-      subTitle: googleBook.volumeInfo.subTitle,
-      description: googleBook.volumeInfo.description,
-      authors: googleBook.volumeInfo.authors,
-      image: googleBook.volumeInfo.imageLinks.thumbnail,
-      link: googleBook.volumeInfo.previewLink,
+      title: volumeInfo.title || "No title available",
+      subTitle: volumeInfo.subTitle || "",
+      description: volumeInfo.description || "No description available",
+      authors: volumeInfo.authors || [],
+      image:
+        (volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail) ||
+        "https://via.placeholder.com/400",
+      link: volumeInfo.previewLink || "",
     };
   });
 };
@@ -32,6 +35,7 @@ const getBooksFromGoogle = async (req, res) => {
       results: books,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       error: error.message,
     });
