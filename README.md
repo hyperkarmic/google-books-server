@@ -1,41 +1,45 @@
-# Google Books Server
+## Project Title
+Biblio-Graphy (Server)
 
-## Tickets
+## Motivation
+I'm quite forgetful!  I want to remember books that I have read recently, and books that I'd like to read in the near future!
 
-### GB-1 - Create the backend boilerplate
+This is an application that allows me to search for a book by title or keyword, returning author and a front cover picture.  Books can then be saved to a database.  Extra information can be acquired by clicking on a button.  A book can be deleted by clicking on a different button.
 
-#### Description
 
-We're going to need some code in place to scaffold the rest of the api.
+## Build Status
 
-#### ACs
+Fully Functional.
 
-- Use our templates in Slack for Mongooose and Express
-- Create a rudimentary folder structure
-- This should be in a separate repo
+## Screenshots
+see assets file
 
----
+## Tech/frameworks used
+Mongoose
+MongoDb Atlas
+Insomnia
+Robo3T
+Axios
+Javascript (nodeJS)
+Express
 
-### GB-2 - Seed the data in the mongo database
+## Installation
+Down load or clone from  https://github.com/hyperkarmic/google-books-server.   Run npm install in the root directory after cloning/downloading to ensure dependencies are installed.
 
-#### Description
+## How to use
+run 'npm run start' in a terminal located in the root directory.  A message will come back confirming the server is running.  The endpoints outlined in the api.js file can be then used to get, post or delete information in the database!
 
-We should have some rudimentary data available that is in the correct book format so that we can develop our endpoints against it.
+## Credits
+Suraj Verma, Kenneth Popay and Colum Lynagh have all helped me immeasurably during this project!
 
-#### ACs
+## License
 
-- Create a seed command in the `package.json` that we can use such as `npm run seed`
-- Create a `seed.js` file inside of a `seed/` folder that will connect to the mongoose database and add the relevant books.
-- Create a `Book.js` file with a mongoose `Book` model that will allow us to run Mongoose CRUD operations on the `Book` collection.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### GB-3 - Add a get route
+## Links
+Main Repository
 
-#### Description
+https://github.com/hyperkarmic/google-books-server
 
-We need the ability to get a list of books from our endpoint by calling a `/books` endpoint on our app.
-
-#### ACs
-
-- Create a `/books` endpoint on the api.
-- This should return the collection of the books from the `Book.js` model we created in mongoose.
-- Use this as an opportunity to create a structure / schema for your response such as `{ results: [] }`
+Heroku deployment
+https://calm-fjord-01191.herokuapp.com/
